@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marlons Taschenrechner</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Marlons Rechner">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- App Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiByeD0iNDAiIGZpbGw9IiMxYTFhMmUiLz4KPHN2ZyB4PSIzNSIgeT0iMzAiIHdpZHRoPSIxMTAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IndoaXRlIj4KPHN2ZyB3aWR0aD0iMTA1IiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDI0IDI4Ij4KPHN2ZyB5PSI1IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2U5NDU2MCI+CjxyZWN0IHg9IjMiIHk9IjMiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgcng9IjQiIGZpbGw9IiNlOTQ1NjAiLz4KPHN2ZyB4PSI2IiB5PSI2IiB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPgo8dGV4dCB4PSIxMiIgeT0iMTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj5NPC90ZXh0Pgo8L3N2Zz4KPC9zdmc+Cjx0ZXh0IHg9IjkwIiB5PSIxMDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0id2hpdGUiPk1hcmxvbnM8L3RleHQ+Cjx0ZXh0IHg9IjkwIiB5PSIxMjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2IzYjNiMyI+UmVjaG5lcjwvdGV4dD4KPC9zdmc+CjwvZz4KPC9zdmc+">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzFhMWEyZSIvPgo8cmVjdCB4PSI2IiB5PSI2IiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHJ4PSI0IiBmaWxsPSIjZTk0NTYwIi8+Cjx0ZXh0IHg9IjE2IiB5PSIyMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiPk08L3RleHQ+Cjwvc3ZnPgo=">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlJlY2huZXIgUHJvIiwKICAic2hvcnRfbmFtZSI6ICJSZWNobmVyIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJ0aGVtZV9jb2xvciI6ICIjMWExYTJlIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMWExYTJlIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTVRnd0lpQm9aV2xuYUhROUlqRTRNQ0lnZG1sbGQwSnZlRDBpTUNBd0lERTRNQ0F4T0RBaUlHWnBiR3c5SW01dmJtVWlJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3TDNOMlp5SStDanhzWldOdElIZHBaSFJvUFNJeE9EQWlJR2hsYVdkb2REMGlNVGd3SWlCeWVEMGlOREFpSUdacGJHdzlJaU14WVRGaE1tVWlMejRLUEhOMlp5QjRQU0kwTlNJZ2VUMGlORFVpSUhkcFpIUm9QU0k1TUNJZ2FHVnBaMmgwUFNJNU1DSWdkbWxsZDBKdmVEMGlNQ0F3SURJMFNUSTRJU0lnWm1sc2JEMGlkMmhwZEdVaVBnbzhjR0YwYUNCa1BTSnRNVGtnTTJndE1UUmpMVEV1TVNBd0xUSWdMams1TFRJaU16Wk5PUVY5TFRJNXc=",
+      "sizes": "180x180",
+      "type": "image/svg+xml"
+    }
+  ]
+}">
+    
+    <style>
+        :root {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --bg-tertiary: #0f3460;
+            --accent: #e94560;
+            --accent-light: #ff6b85;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --button-bg: #2a2a4e;
+            --button-hover: #3a3a6e;
+            --operator-bg: #e94560;
+            --operator-hover: #ff6b85;
+            --display-bg: #0a0a1a;
+        }
+
+        .theme-light {
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #e0e0e0;
+            --accent: #2196f3;
+            --accent-light: #64b5f6;
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --button-bg: #ffffff;
+            --button-hover: #f0f0f0;
+            --operator-bg: #2196f3;
+            --operator-hover: #64b5f6;
+            --display-bg: #fafafa;
+        }
+
+        .theme-neon {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --accent: #00ff88;
+            --accent-light: #33ff99;
+            --text-primary: #00ff88;
+            --text-secondary: #7d8590;
+            --button-bg: #21262d;
+            --button-hover: #30363d;
+            --operator-bg: #00ff88;
+            --operator-hover: #33ff99;
+            --display-bg: #0d1117;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* iOS-specific adjustments */
+        @supports (-webkit-touch-callout: none) {
+            .calculator {
+                margin-bottom: env(safe-area-inset-bottom);
+            }
+            
+            .header {
+                padding-top: max(12px, env(safe-area-inset-top));
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--bg-tertiary);
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .icon-btn {
+            background: var(--button-bg);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            border: 1px solid var(--bg-tertiary);
+        }
+
+        .icon-btn:active {
+            transform: scale(0.95);
+            background: var(--button-hover);
+        }
+
+        .calculator {
+            max-width: 400px;
+            margin: 20px auto;
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+                        0 0 0 1px var(--bg-tertiary);
+            border: none;
+            backdrop-filter: blur(20px);
+        }
+
+        /* iOS native calculator styling */
+        .display {
+            background: var(--display-bg);
+            padding: 40px 30px 30px 30px;
+            text-align: right;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .display-main {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 8px;
+            word-wrap: break-word;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .display-history {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            min-height: 25px;
+            opacity: 0.7;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--bg-tertiary);
+            padding: 1px;
+        }
+
+        .btn {
+            background: var(--button-bg);
+            border: none;
+            padding: 28px;
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 400;
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+            background: var(--button-hover);
+            transition: all 0.1s ease;
+        }
+
+        .btn:hover {
+            background: var(--button-hover);
+        }
+
+        .btn.operator {
+            background: var(--operator-bg);
+            color: white;
+            font-weight: 500;
+        }
+
+        .btn.operator:active {
+            background: var(--operator-hover);
+            transform: scale(0.96);
+        }
+
+        .btn.equals {
+            background: var(--accent);
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+
+        .btn.equals:active {
+            background: var(--accent-light);
+            transform: scale(0.96);
+        }
+
+        .btn.function {
+            background: var(--bg-tertiary);
+            color: var(--accent);
+            font-size: 1rem;
+        }
+
+        .scientific-panel {
+            display: none;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+            background: var(--bg-tertiary);
+            padding: 1px;
+            border-top: 1px solid var(--bg-tertiary);
+        }
+
+        .scientific-panel.show {
+            display: grid;
+        }
+
+        .scientific-panel .btn {
+            padding: 20px 10px;
+            font-size: 0.95rem;
+        }
+
+        .history-panel {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--bg-tertiary);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .history-panel.show {
+            right: 0;
+        }
+
+        .history-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--bg-tertiary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .history-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: var(--button-bg);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--bg-tertiary);
+        }
+
+        .history-item:hover {
+            background: var(--button-hover);
+        }
+
+        .history-expression {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .history-result {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        .theme-selector {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--bg-tertiary);
+            z-index: 1001;
+            display: none;
+            min-width: 280px;
+        }
+
+        .theme-selector.show {
+            display: block;
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: var(--button-bg);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--bg-tertiary);
+        }
+
+        .theme-option:hover {
+            background: var(--button-hover);
+        }
+
+        .theme-option.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .theme-preview {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(233, 69, 96, 0.3);
+            z-index: 100;
+        }
+
+        .mode-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .mode-toggle:hover {
+            background: var(--accent-light);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 480px) {
+            .calculator {
+                margin: 10px;
+                border-radius: 16px;
+            }
+            
+            .display {
+                padding: 25px 20px;
+            }
+            
+            .display-main {
+                font-size: 2.5rem;
+            }
+            
+            .btn {
+                padding: 20px;
+                font-size: 1.2rem;
+            }
+            
+            .history-panel {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .theme-selector {
+                width: 90%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body class="theme-dark">
+    <div class="header">
+        <h1>🧮 Marlons Taschenrechner</h1>
+        <div class="header-controls">
+            <button class="icon-btn" onclick="toggleHistory()" title="Verlauf">
+                📋
+            </button>
+            <button class="icon-btn" onclick="toggleTheme()" title="Theme">
+                🎨
+            </button>
+        </div>
+    </div>
+
+    <div class="calculator">
+        <div class="display">
+            <div class="display-history" id="displayHistory"></div>
+            <div class="display-main" id="displayMain">0</div>
+        </div>
+
+        <div class="scientific-panel" id="scientificPanel">
+            <button class="btn function" onclick="addFunction('sin(')">sin</button>
+            <button class="btn function" onclick="addFunction('cos(')">cos</button>
+            <button class="btn function" onclick="addFunction('tan(')">tan</button>
+            <button class="btn function" onclick="addFunction('log(')">log</button>
+            <button class="btn function" onclick="addFunction('ln(')">ln</button>
+            <button class="btn function" onclick="addFunction('sqrt(')">√</button>
+            <button class="btn function" onclick="addOperator('^')">x^y</button>
+            <button class="btn function" onclick="addNumber('3.141592653589793')">π</button>
+            <button class="btn function" onclick="addNumber('2.718281828459045')">e</button>
+            <button class="btn function" onclick="addOperator('!')">(</button>
+            <button class="btn function" onclick="addOperator('!')">()</button>
+            <button class="btn function" onclick="factorial()">x!</button>
+            <button class="btn function" onclick="addFunction('abs(')">|x|</button>
+            <button class="btn function" onclick="percent()">%</button>
+            <button class="btn function" onclick="inverse()">1/x</button>
+        </div>
+
+        <div class="buttons">
+            <button class="btn function" onclick="clearAll()">AC</button>
+            <button class="btn function" onclick="clearEntry()">C</button>
+            <button class="btn function" onclick="backspace()">⌫</button>
+            <button class="btn operator" onclick="addOperator('/')">÷</button>
+
+            <button class="btn" onclick="addNumber('7')">7</button>
+            <button class="btn" onclick="addNumber('8')">8</button>
+            <button class="btn" onclick="addNumber('9')">9</button>
+            <button class="btn operator" onclick="addOperator('*')">×</button>
+
+            <button class="btn" onclick="addNumber('4')">4</button>
+            <button class="btn" onclick="addNumber('5')">5</button>
+            <button class="btn" onclick="addNumber('6')">6</button>
+            <button class="btn operator" onclick="addOperator('-')">−</button>
+
+            <button class="btn" onclick="addNumber('1')">1</button>
+            <button class="btn" onclick="addNumber('2')">2</button>
+            <button class="btn" onclick="addNumber('3')">3</button>
+            <button class="btn operator" onclick="addOperator('+')">+</button>
+
+            <button class="btn" onclick="toggleSign()">±</button>
+            <button class="btn" onclick="addNumber('0')">0</button>
+            <button class="btn" onclick="addDecimal()">.</button>
+            <button class="btn equals" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <!-- History Panel -->
+    <div class="history-panel" id="historyPanel">
+        <div class="history-header">
+            <h3>Verlauf</h3>
+            <div>
+                <button class="icon-btn" onclick="clearHistory()" title="Verlauf löschen">🗑️</button>
+                <button class="icon-btn" onclick="toggleHistory()" title="Schließen">✕</button>
+            </div>
+        </div>
+        <div class="history-list" id="historyList">
+            <p style="color: var(--text-secondary); text-align: center; margin-top: 50px;">Noch keine Berechnungen</p>
+        </div>
+    </div>
+
+    <!-- Theme Selector -->
+    <div class="overlay" id="overlay" onclick="closeThemeSelector()"></div>
+    <div class="theme-selector" id="themeSelector">
+        <h3 style="margin-bottom: 20px;">Theme auswählen</h3>
+        <div class="theme-option active" data-theme="dark">
+            <div class="theme-preview" style="background: #1a1a2e;"></div>
+            <span>Dunkel</span>
+        </div>
+        <div class="theme-option" data-theme="light">
+            <div class="theme-preview" style="background: #f5f5f5; border: 1px solid #ddd;"></div>
+            <span>Hell</span>
+        </div>
+        <div class="theme-option" data-theme="neon">
+            <div class="theme-preview" style="background: #0d1117; border: 1px solid #00ff88;"></div>
+            <span>Neon</span>
+        </div>
+        <button onclick="closeThemeSelector()" style="margin-top: 20px; width: 100%; padding: 12px; background: var(--accent); color: white; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer;">Schließen</button>
+    </div>
+
+    <!-- Scientific Mode Toggle -->
+    <button class="mode-toggle" onclick="toggleScientific()" id="modeToggle" title="Wissenschaftlicher Modus">
+        🧮
+    </button>
+
+    <script>
+        // Calculator State
+        let currentInput = '0';
+        let previousInput = '';
+        let operator = null;
+        let waitingForNewInput = false;
+        let history = JSON.parse(localStorage.getItem('calculatorHistory') || '[]');
+        let isScientific = false;
+        let currentTheme = localStorage.getItem('calculatorTheme') || 'dark';
+
+        // DOM Elements
+        const displayMain = document.getElementById('displayMain');
+        const displayHistory = document.getElementById('displayHistory');
+        const historyPanel = document.getElementById('historyPanel');
+        const historyList = document.getElementById('historyList');
+        const scientificPanel = document.getElementById('scientificPanel');
+        const modeToggle = document.getElementById('modeToggle');
+        const themeSelector = document.getElementById('themeSelector');
+        const overlay = document.getElementById('overlay');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDisplay();
+            updateHistory();
+            applyTheme(currentTheme);
+            
+            // Keyboard support
+            document.addEventListener('keydown', handleKeyboard);
+        });
+
+        // Display Functions
+        function updateDisplay() {
+            displayMain.textContent = formatNumber(currentInput);
+            if (previousInput && operator) {
+                displayHistory.textContent = `${formatNumber(previousInput)} ${getOperatorSymbol(operator)}`;
+            } else {
+                displayHistory.textContent = '';
+            }
+        }
+
+        function formatNumber(num) {
+            if (num === '0') return '0';
+            if (num.includes('Error')) return num;
+            
+            const number = parseFloat(num);
+            if (isNaN(number)) return num;
+            
+            if (Math.abs(number) >= 1e12 || (Math.abs(number) < 1e-6 && number !== 0)) {
+                return number.toExponential(6);
+            }
+            
+            return number.toLocaleString('de-DE', { maximumFractionDigits: 10 });
+        }
+
+        function getOperatorSymbol(op) {
+            const symbols = { '+': '+', '-': '−', '*': '×', '/': '÷', '^': '^' };
+            return symbols[op] || op;
+        }
+
+        // Input Functions
+        function addNumber(num) {
+            if (waitingForNewInput) {
+                currentInput = num;
+                waitingForNewInput = false;
+            } else {
+                currentInput = currentInput === '0' ? num : currentInput + num;
+            }
+            updateDisplay();
+        }
+
+        function addDecimal() {
+            if (waitingForNewInput) {
+                currentInput = '0.';
+                waitingForNewInput = false;
+            } else if (!currentInput.includes('.')) {
+                currentInput += '.';
+            }
+            updateDisplay();
+        }
+
+        function addOperator(op) {
+            if (previousInput && operator && !waitingForNewInput) {
+                calculate();
+            }
+            
+            operator = op;
+            previousInput = currentInput;
+            waitingForNewInput = true;
+            updateDisplay();
+        }
+
+        function addFunction(func) {
+            if (waitingForNewInput) {
+                currentInput = func;
+                waitingForNewInput = false;
+            } else {
+                currentInput = currentInput === '0' ? func : currentInput + func;
+            }
+            updateDisplay();
+        }
+
+        // Calculation Functions
+        function calculate() {
+            if (!previousInput || !operator) return;
+            
+            const prev = parseFloat(previousInput);
+            const current = parseFloat(currentInput);
+            
+            if (isNaN(prev) || isNaN(current)) return;
+            
+            let result;
+            
+            try {
+                switch (operator) {
+                    case '+':
+                        result = prev + current;
+                        break;
+                    case '-':
+                        result = prev - current;
+                        break;
+                    case '*':
+                        result = prev * current;
+                        break;
+                    case '/':
+                        if (current === 0) throw new Error('Division durch Null');
+                        result = prev / current;
+                        break;
+                    case '^':
+                        result = Math.pow(prev, current);
+                        break;
+                    default:
+                        return;
+                }
+                
+                // Add to history
+                addToHistory(`${previousInput} ${getOperatorSymbol(operator)} ${currentInput}`, result.toString());
+                
+                currentInput = result.toString();
+                previousInput = '';
+                operator = null;
+                waitingForNewInput = true;
+                
+            } catch (error) {
+                currentInput = 'Error';
+                previousInput = '';
+                operator = null;
+                waitingForNewInput = true;
+            }
+            
+            updateDisplay();
+        }
+
+        function evaluateExpression(expr) {
+            try {
+                // Replace functions
+                expr = expr.replace(/sin\(/g, 'Math.sin(');
+                expr = expr.replace(/cos\(/g, 'Math.cos(');
+                expr = expr.replace(/tan\(/g, 'Math.tan(');
+                expr = expr.replace(/log\(/g, 'Math.log10(');
+                expr = expr.replace(/ln\(/g, 'Math.log(');
+                expr = expr.replace(/sqrt\(/g, 'Math.sqrt(');
+                expr = expr.replace(/abs\(/g, 'Math.abs(');
+                expr = expr.replace(/\^/g, '**');
+                
+                return eval(expr);
+            } catch (error) {
+                throw new Error('Ungültiger Ausdruck');
+            }
+        }
+
+        // Utility Functions
+        function clearAll() {
+            currentInput = '0';
+            previousInput = '';
+            operator = null;
+            waitingForNewInput = false;
+            updateDisplay();
+        }
+
+        function clearEntry() {
+            currentInput = '0';
+            updateDisplay();
+        }
+
+        function backspace() {
+            if (currentInput.length > 1) {
+                currentInput = currentInput.slice(0, -1);
+            } else {
+                currentInput = '0';
+            }
+            updateDisplay();
+        }
+
+        function toggleSign() {
+            if (currentInput !== '0') {
+                currentInput = currentInput.startsWith('-') 
+                    ? currentInput.slice(1) 
+                    : '-' + currentInput;
+                updateDisplay();
+            }
+        }
+
+        function percent() {
+            const num = parseFloat(currentInput);
+            if (!isNaN(num)) {
+                currentInput = (num / 100).toString();
+                updateDisplay();
+            }
+        }
+
+        function inverse() {
+            const num = parseFloat(currentInput);
+            if (!isNaN(num) && num !== 0) {
+                currentInput = (1 / num).toString();
+                updateDisplay();
+            }
+        }
+
+        function factorial() {
+            const num = parseInt(currentInput);
+            if (num >= 0 && num <= 170) {
+                let result = 1;
+                for (let i = 2; i <= num; i++) {
+                    result *= i;
+                }
+                currentInput = result.toString();
+                updateDisplay();
+            }
+        }
+
+        // Scientific Mode
+        function toggleScientific() {
+            isScientific = !isScientific;
+            scientificPanel.classList.toggle('show', isScientific);
+            modeToggle.textContent = isScientific ? '🔢' : '🧮';
+            modeToggle.title = isScientific ? 'Standard Modus' : 'Wissenschaftlicher Modus';
+        }
+
+        // History Functions
+        function addToHistory(expression, result) {
+            const historyItem = {
+                expression,
+                result,
+                timestamp: new Date().toLocaleString('de-DE')
+            };
+            
+            history.unshift(historyItem);
+            if (history.length > 50) history.pop(); // Keep only last 50
+            
+            localStorage.setItem('calculatorHistory', JSON.stringify(history));
+            updateHistory();
+        }
+
+        function updateHistory() {
+            if (history.length === 0) {
+                historyList.innerHTML = '<p style="color: var(--text-secondary); text-align: center; margin-top: 50px;">Noch keine Berechnungen</p>';
+                return;
+            }
+            
+            historyList.innerHTML = history.map((item, index) => `
+                <div class="history-item" onclick="useHistoryItem(${index})">
+                    <div class="history-expression">${item.expression}</div>
+                    <div class="history-result">${formatNumber(item.result)}</div>
+                </div>
+            `).join('');
+        }
+
+        function useHistoryItem(index) {
+            const item = history[index];
+            currentInput = item.result;
+            previousInput = '';
+            operator = null;
+            waitingForNewInput = true;
+            updateDisplay();
+            toggleHistory();
+        }
+
+        function clearHistory() {
+            if (confirm('Verlauf wirklich löschen?')) {
+                history = [];
+                localStorage.setItem('calculatorHistory', JSON.stringify(history));
+                updateHistory();
+            }
+        }
+
+        function toggleHistory() {
+            historyPanel.classList.toggle('show');
+            overlay.classList.toggle('show');
+        }
+
+        // Theme Functions
+        function toggleTheme() {
+            themeSelector.classList.add('show');
+            overlay.classList.add('show');
+        }
+
+        function closeThemeSelector() {
+            themeSelector.classList.remove('show');
+            overlay.classList.remove('show');
+        }
+
+        function applyTheme(theme) {
+            document.body.className = `theme-${theme}`;
+            currentTheme = theme;
+            localStorage.setItem('calculatorTheme', theme);
+            
+            // Update theme selector
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.classList.toggle('active', option.dataset.theme === theme);
+            });
+        }
+
+        // Theme selector event listeners
+        document.querySelectorAll('.theme-option').forEach(option => {
+            option.addEventListener('click', () => {
+                applyTheme(option.dataset.theme);
+                setTimeout(closeThemeSelector, 200);
+            });
+        });
+
+        // Keyboard Support
+        function handleKeyboard(event) {
+            const key = event.key;
+            
+            event.preventDefault();
+            
+            // Numbers
+            if (key >= '0' && key <= '9') {
+                addNumber(key);
+            }
+            // Operators
+            else if (key === '+') {
+                addOperator('+');
+            }
+            else if (key === '-') {
+                addOperator('-');
+            }
+            else if (key === '*') {
+                addOperator('*');
+            }
+            else if (key === '/') {
+                addOperator('/');
+            }
+            else if (key === '^') {
+                addOperator('^');
+            }
+            // Special keys
+            else if (key === 'Enter' || key === '=') {
+                calculate();
+            }
+            else if (key === 'Escape') {
+                clearAll();
+            }
+            else if (key === 'Backspace') {
+                backspace();
+            }
+            else if (key === 'Delete') {
+                clearEntry();
+            }
+            else if (key === '.') {
+                addDecimal();
+            }
+            else if (key === '%') {
+                percent();
+            }
+            // Scientific functions
+            else if (event.ctrlKey) {
+                switch (key.toLowerCase()) {
+                    case 's':
+                        addFunction('sin(');
+                        break;
+                    case 'c':
+                        addFunction('cos(');
+                        break;
+                    case 't':
+                        addFunction('tan(');
+                        break;
+                    case 'l':
+                        addFunction('log(');
+                        break;
+                    case 'n':
+                        addFunction('ln(');
+                        break;
+                    case 'r':
+                        addFunction('sqrt(');
+                        break;
+                    case 'p':
+                        addNumber('3.141592653589793');
+                        break;
+                    case 'e':
+                        addNumber('2.718281828459045');
+                        break;
+                    case 'h':
+                        toggleHistory();
+                        break;
+                    case 'm':
+                        toggleScientific();
+                        break;
+                }
+            }
+        }
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                const swCode = `
+                    const CACHE_NAME = 'calculator-v1';
+                    const urlsToCache = [
+                        '/',
+                        '/manifest.json'
+                    ];
+
+                    self.addEventListener('install', event => {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then(cache => cache.addAll(urlsToCache))
+                        );
+                    });
+
+                    self.addEventListener('fetch', event => {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then(response => {
+                                    return response || fetch(event.request);
+                                }
+                            )
+                        );
+                    });
+                `;
+                
+                const blob = new Blob([swCode], {type: 'application/javascript'});
+                const swUrl = URL.createObjectURL(blob);
+                
+                navigator.serviceWorker.register(swUrl)
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Prevent zoom on double tap (iOS)
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            deferredPrompt = e;
+            // Show custom install button or prompt
+        });
+
+        // Haptic Feedback (if supported)
+        function vibrate() {
+            if (navigator.vibrate) {
+                navigator.vibrate(10);
+            }
+        }
+
+        // Add vibration to button clicks
+        document.querySelectorAll('.btn, .icon-btn').forEach(btn => {
+            btn.addEventListener('click', vibrate);
+        });
+
+        // Handle app state changes
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                // Save current state
+                localStorage.setItem('calculatorState', JSON.stringify({
+                    currentInput,
+                    previousInput,
+                    operator,
+                    waitingForNewInput
+                }));
+            } else {
+                // Restore state if needed
+                const savedState = localStorage.getItem('calculatorState');
+                if (savedState) {
+                    try {
+                        const state = JSON.parse(savedState);
+                        currentInput = state.currentInput || '0';
+                        previousInput = state.previousInput || '';
+                        operator = state.operator || null;
+                        waitingForNewInput = state.waitingForNewInput || false;
+                        updateDisplay();
+                    } catch (e) {
+                        // Ignore errors
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
